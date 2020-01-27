@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AppareilService } from './service/appareil.service';
+import { Component , OnInit} from '@angular/core';
+ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/observable/interval';
+import { AppareilService } from './service/appareil.service';
+ 
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
+export class AppComponent implements OnInit {
    isAuth = false;
-
+   seconds: number;
   appareils: any[];
   
   constructor( private appareilService : AppareilService) {
@@ -23,10 +24,22 @@ export class AppComponent  {
  
   }
 ngOnInit(){
- 
+      
       this.appareils = this.appareilService.appareils;
         const counter = Observable.interval(1000);
-  
+        counter.subscibe(
+          (value)=>{
+            this.seconds=value; 
+       
+          },
+          (error)=>{
+            console.log('Uh-oh, an error occurred! : ' + error);
+          },
+           
+           () => {
+             console.log('Observable complete!');
+      }
+        );
 }
 /* onAllumer() {
     this.appareilService.switchOnAll();
