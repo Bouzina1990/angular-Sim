@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppareilService } from '../service/appareil.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class AppareilViewComponent implements OnInit {
 
   appareils: any[];
   isAuth= false;
+  @Input() id: number;
 
   lastUpdate = new Promise((resolve, reject) => {
     const date = new Date();
@@ -28,12 +29,11 @@ export class AppareilViewComponent implements OnInit {
 
   ngOnInit() {
     this.appareils = this.appareilService.appareils;
+    this.id=this.appareilService.id;
   }
-
   onAllumer() {
     this.appareilService.switchOnAll();
   }
-
   onEteindre() {
     if(confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
       this.appareilService.switchOffAll();

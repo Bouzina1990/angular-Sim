@@ -8,19 +8,26 @@ import { AppareilComponent } from './appareil/appareil.component';
 import { AppareilService } from './service/appareil.service';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
 import { AuthComponent } from './auth/auth.component';
- import { RouterModule, Routes } from '@angular/router'
+ import { RouterModule, Routes } from '@angular/router';
+import { AuthService } from './service/auth.service';
+import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import { AutGuardService } from './service/aut-guard.service'
  
 
 const appRoutes: Routes = [
   { path: 'appareils', component: AppareilViewComponent },
+  { path: 'appareils/:id', component: SingleAppareilComponent },
   { path: 'auth', component: AuthComponent },
-  { path: '', component: AppareilViewComponent }
+ 
+  { path: 'not-found', component: FourOhFourComponent },
+  { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({
  imports: [ BrowserModule,FormsModule, RouterModule.forRoot(appRoutes)],
-  declarations: [ AppComponent, HelloComponent, AppareilComponent, AppareilViewComponent, AuthComponent],
+  declarations: [ AppComponent, HelloComponent, AppareilComponent, AppareilViewComponent, AuthComponent, SingleAppareilComponent, FourOhFourComponent],
   bootstrap:    [ AppComponent ],
-  providers: [AppareilService]
+  providers: [AppareilService, AuthService, AutGuardService]
 })
 export class AppModule {}
