@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppareilService } from '../service/appareil.service';
+import { AppareilService } from './service/appareil.service';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -23,7 +23,7 @@ ngOnInit(){
  
       this.appareils = this.appareilService.appareils;
 }
- onAllumer() {
+/* onAllumer() {
     this.appareilService.switchOnAll();
 }
 onEteindre() {
@@ -33,7 +33,7 @@ onEteindre() {
       return null;
     }
 
-} 
+} */
 
 
 }
