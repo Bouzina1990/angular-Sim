@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AppareilService } from './service/appareil.service';
+import 'rxjs/add/observable/interval';
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -22,6 +25,8 @@ export class AppComponent  {
 ngOnInit(){
  
       this.appareils = this.appareilService.appareils;
+        const counter = Observable.interval(1000);
+  
 }
 /* onAllumer() {
     this.appareilService.switchOnAll();
