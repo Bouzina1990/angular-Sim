@@ -11,12 +11,12 @@ export class AppComponent  {
   appareils: any[];
   
   constructor( private appareilService : AppareilService) {
- 
- setTimeout(
+ this.isAuth = true;
+ /*setTimeout(
       () => {
         this.isAuth = true;
       }, 4000
-    );
+    );*/
  
   }
 ngOnInit(){
