@@ -27,7 +27,7 @@ ngOnInit(){
       
       this.appareils = this.appareilService.appareils;
         const counter = Observable.interval(1000);
-        counter.subscibe(
+        counter.subscribe(
           (value)=>{
             this.seconds=value; 
        
@@ -40,7 +40,7 @@ ngOnInit(){
              console.log('Observable complete!');
       }
         );
-}
+        }
 /* onAllumer() {
     this.appareilService.switchOnAll();
 }
