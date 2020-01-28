@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit, OnDestroy} from '@angular/core';
  import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/observable/interval';
 import { AppareilService } from './service/appareil.service';
@@ -9,9 +9,11 @@ import { AppareilService } from './service/appareil.service';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit , OnDestroy {
    isAuth = false;
    seconds: number;
+   counterSubscription: Subscription;
+
   appareils: any[];
   
   constructor( private appareilService : AppareilService) {
@@ -27,7 +29,7 @@ ngOnInit(){
       
       this.appareils = this.appareilService.appareils;
         const counter = Observable.interval(1000);
-        counter.subscribe(
+          this.counterSubscription = counter.subscribe(
           (value)=>{
             this.seconds=value; 
        
@@ -41,6 +43,9 @@ ngOnInit(){
       }
         );
         }
+          ngOnDestroy() {
+    this.counterSubscription.unsubscribe();
+  }
 /* onAllumer() {
     this.appareilService.switchOnAll();
 }
