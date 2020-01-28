@@ -11,10 +11,10 @@
     <label for="status">
       État de l'appareil
     </label>
-    <select id="status" class="form-control" name="status" [ngModel]="defaultOnOff" required>
+    <select id="status" class="form-control" name="status" [ngModel]="defaultOnOff">
       <option value="allumé">Allumé</option>
       <option value="éteint">Éteint</option>
-    </select>
+</select>
 </div>
   <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
 </form>

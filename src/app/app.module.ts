@@ -8,27 +8,31 @@ import { AppareilComponent } from './appareil/appareil.component';
 import { AppareilService } from './service/appareil.service';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
 import { AuthComponent } from './auth/auth.component';
- import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './service/auth.service';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuardService } from './service/aut-guard.service';
-import { EditAppareilComponent } from './edit-appareil/edit-appareil.component'
+import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
+import { UserService } from './service/user.service';
+import { UserListComponent } from './user-list/user-list.component';
  
+
 
 const appRoutes: Routes = [
   { path: 'appareils', canActivate: [AuthGuardService], component: AppareilViewComponent },
   { path: 'appareils/:id', canActivate: [AuthGuardService], component: SingleAppareilComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'edit', canActivate: [AuthGuardService], component: EditAppareilComponent },
+  { path: 'users', component: UserListComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({
  imports: [ BrowserModule,FormsModule, RouterModule.forRoot(appRoutes)],
- declarations: [ AppComponent, HelloComponent, AppareilComponent, AppareilViewComponent, AuthComponent, SingleAppareilComponent, FourOhFourComponent, EditAppareilComponent],
+ declarations: [ AppComponent, HelloComponent, AppareilComponent, AppareilViewComponent, AuthComponent, SingleAppareilComponent, FourOhFourComponent, EditAppareilComponent, UserListComponent],
  bootstrap:    [ AppComponent ],
- providers: [AppareilService, AuthService, AuthGuardService]
+ providers: [AppareilService, AuthService, AuthGuardService, UserService]
 })
 export class AppModule {}
