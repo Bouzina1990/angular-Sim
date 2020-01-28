@@ -29,7 +29,7 @@ export class AppareilViewComponent implements OnInit {
 
   ngOnInit() {
     this.appareils = this.appareilService.appareils;
-    this.id=this.appareilService.id;
+   // this.id=this.appareilService.id;
   }
   onAllumer() {
     this.appareilService.switchOnAll();

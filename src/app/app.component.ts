@@ -44,6 +44,7 @@ ngOnInit(){
         );
         }
           ngOnDestroy() {
+            
     this.counterSubscription.unsubscribe();
   }
 /* onAllumer() {
