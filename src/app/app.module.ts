@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { AppareilComponent } from './appareil/appareil.component';
@@ -16,7 +16,9 @@ import { AuthGuardService } from './service/aut-guard.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 import { UserService } from './service/user.service';
 import { UserListComponent } from './user-list/user-list.component';
- 
+import { NewUserComponent } from './new-user/new-user.component';
+import { HttpClientModule} from '@angular/common/http';
+
 
 
 const appRoutes: Routes = [
@@ -25,13 +27,14 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'edit', canActivate: [AuthGuardService], component: EditAppareilComponent },
   { path: 'users', component: UserListComponent },
+  { path: 'new-user', component: NewUserComponent },
   { path: 'not-found', component: FourOhFourComponent },
-  { path: '**', redirectTo: 'not-found' }
+  { path: '**', redirectTo: 'not-found' } 
 ];
 
 @NgModule({
- imports: [ BrowserModule,FormsModule,  ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
- declarations: [ AppComponent, HelloComponent, AppareilComponent, AppareilViewComponent, AuthComponent, SingleAppareilComponent, FourOhFourComponent, EditAppareilComponent, UserListComponent],
+ imports: [ BrowserModule,FormsModule,  ReactiveFormsModule, RouterModule.forRoot(appRoutes),  HttpClientModule  ,  NgbModule],
+ declarations: [ AppComponent, HelloComponent, AppareilComponent, AppareilViewComponent, AuthComponent, SingleAppareilComponent, FourOhFourComponent, EditAppareilComponent, UserListComponent, NewUserComponent],
  bootstrap:    [ AppComponent ],
  providers: [AppareilService, AuthService, AuthGuardService, UserService]
 })

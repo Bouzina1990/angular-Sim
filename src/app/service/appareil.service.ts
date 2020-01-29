@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AppareilService {
@@ -21,7 +22,7 @@ private appareils = [
       status: 'éteint'
     }
 ];
-  constructor() {}
+  constructor(private httpClient : HttpClient) {}
   emitAppareilSubject() {
     this.appareilsSubject.next(this.appareils.slice());
   }
@@ -69,4 +70,31 @@ addAppareil(name: string, status: string) {
     this.appareils.push(appareilObject);
     this.emitAppareilSubject();
 }
+
+saveAppareilsToServer() {
+    this.httpClient
+      .put('https://appareils-7fc21.firebaseio.com/appareil/lHKEis7tfwkO7jyVUlKN.json', this.appareils)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+}
+getAppareilsFromServer() {
+    this.httpClient
+      .get<any[]>('https://appareils-7fc21.firebaseio.com/appareil/lHKEis7tfwkO7jyVUlKN.json')
+      .subscribe(
+        (response) => {
+          this.appareils = response;
+          this.emitAppareilSubject();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+}
+
 }
