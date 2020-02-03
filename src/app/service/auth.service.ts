@@ -11,6 +11,7 @@ export class AuthService {
        
             this.isAuth = true;
             resolve(true);
+            reject(false);
            
       }
     );
